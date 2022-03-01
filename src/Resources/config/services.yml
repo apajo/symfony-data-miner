@@ -4,13 +4,13 @@ imports:
 
 services:
   data_miner.command:
-    class: DataMiner\Command\TrainCommand
+    class: PhpDataMiner\Command\TrainCommand
     autowire: true
     tags:
       - {name: console.command}
 
   data_miner.miner:
-    class: DataMiner\Miner\Miner
+    class: PhpDataMiner\Miner\Miner
     calls:
       - ["setProvider", ["@data_miner.property.provider"]]
 
@@ -20,7 +20,7 @@ services:
       - "@data_miner.property.registry"
 
   data_miner.property.registry:
-    class: DataMiner\Registry\Registry
+    class: PhpDataMiner\Registry\Registry
 
   data_miner.property.abstract:
     abstract: true

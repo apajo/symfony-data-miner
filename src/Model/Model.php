@@ -1,13 +1,12 @@
 <?php
 
-namespace DataMiner\Model;
+namespace PhpDataMiner\Model;
 
 use ATV\BaseBundle\Entity\PInvoice;
-use DataMiner\Storage\Model\Discriminator\Discriminator;
-use DataMiner\Storage\Model\Discriminator\DiscriminatorInterface;
-use DataMiner\Storage\Model\EntryInterface;
-use DataMiner\Storage\Model\Model as Base;
-use DataMiner\Storage\Model\ModelInterface;
+use PhpDataMiner\Storage\Model\Discriminator\Discriminator;
+use PhpDataMiner\Storage\Model\Discriminator\DiscriminatorInterface;
+use PhpDataMiner\Storage\Model\Model as Base;
+use PhpDataMiner\Storage\Model\ModelInterface;
 
 /**
  * Description of Model
@@ -16,12 +15,6 @@ use DataMiner\Storage\Model\ModelInterface;
  */
 class Model extends Base implements ModelInterface
 {
-
-    public static function createEntry(): EntryInterface
-    {
-        return new StorageEntry();
-    }
-
     /**
      * @param PInvoice $entity
      * @return DiscriminatorInterface

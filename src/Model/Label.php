@@ -1,9 +1,9 @@
 <?php
 
-namespace DataMiner\Model;
+namespace PhpDataMiner\Model;
 
-use DataMiner\Storage\Model\Label as Base;
-use DataMiner\Storage\Model\LabelInterface;
+use PhpDataMiner\Storage\Model\Label as Base;
+use PhpDataMiner\Storage\Model\LabelInterface;
 
 /**
  * Description of Label

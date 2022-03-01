@@ -1,9 +1,9 @@
 <?php
 
-namespace DataMiner\Model;
+namespace PhpDataMiner\Model;
 
-use DataMiner\Storage\Model\Property as Base;
-use DataMiner\Storage\Model\PropertyInterface;
+use PhpDataMiner\Storage\Model\Property as Base;
+use PhpDataMiner\Storage\Model\PropertyInterface;
 
 /**
  * Description of Property

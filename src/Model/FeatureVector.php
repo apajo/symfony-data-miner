@@ -1,8 +1,8 @@
 <?php
 
-namespace DataMiner\Model;
+namespace PhpDataMiner\Model;
 
-use DataMiner\Storage\Model\FeatureVector as Base;
+use PhpDataMiner\Storage\Model\FeatureVector as Base;
 
 /**
  * Description of FeatureVector

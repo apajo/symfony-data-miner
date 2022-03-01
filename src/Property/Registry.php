@@ -1,6 +1,6 @@
 <?php
 
-namespace DataMiner\Registry;
+namespace PhpDataMiner\Registry;
 
 use PhpDataMiner\Model\Property\Registry as Base;
 

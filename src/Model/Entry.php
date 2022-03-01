@@ -1,9 +1,9 @@
 <?php
 
-namespace DataMiner\Model;
+namespace PhpDataMiner\Model;
 
-use DataMiner\Storage\Model\Entry as Base;
-use DataMiner\Storage\Model\EntryInterface;
+use PhpDataMiner\Storage\Model\Entry as Base;
+use PhpDataMiner\Storage\Model\EntryInterface;
 
 /**
  * Description of Entry
