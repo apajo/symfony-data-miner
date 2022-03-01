@@ -4,7 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="DataMinerBundle\Model\Feature" table="miner__feature">
+	<entity name="DataMiner\Model\Feature" table="miner__feature">
 		<id name="id" type="integer">
 			<generator strategy="AUTO"/>
 		</id>
@@ -17,7 +17,7 @@
 			<index columns="name,property_id" />
 		</indexes>
 
-		<many-to-one field="property" target-entity="DataMinerBundle\Model\Property" inversed-by="features">
+		<many-to-one field="property" target-entity="DataMiner\Model\Property" inversed-by="features">
 		</many-to-one>
 
 		<field name="name" type="string" length="20" nullable="true" />

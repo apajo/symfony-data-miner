@@ -11,6 +11,12 @@
             "homepage": "http://apajo.ee/"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/apajo/php-data-miner"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "apajo/php-data-miner": "^0.0.30"

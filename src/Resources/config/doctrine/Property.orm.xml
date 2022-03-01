@@ -4,7 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="DataMinerBundle\Model\Property" table="miner__property">
+	<entity name="DataMiner\Model\Property" table="miner__property">
 		<id name="id" type="integer">
 			<generator strategy="AUTO"/>
 		</id>
@@ -17,16 +17,16 @@
 			<index columns="entry_id,name" />
 		</indexes>
 
-		<many-to-one field="entry" target-entity="DataMinerBundle\Model\Entry" >
+		<many-to-one field="entry" target-entity="DataMiner\Model\Entry" >
 		</many-to-one>
 
-		<many-to-one field="label" target-entity="DataMinerBundle\Model\Label">
+		<many-to-one field="label" target-entity="DataMiner\Model\Label">
 			<cascade>
 				<cascade-persist></cascade-persist>
 			</cascade>
 		</many-to-one>
 
-		<one-to-many field="features" target-entity="DataMinerBundle\Model\Feature"
+		<one-to-many field="features" target-entity="DataMiner\Model\Feature"
 					 mapped-by="property" orphan-removal="true">
 			<cascade>
 				<cascade-all></cascade-all>

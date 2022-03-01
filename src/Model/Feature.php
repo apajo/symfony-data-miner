@@ -1,6 +1,6 @@
 <?php
 
-namespace DataMinerBundle\Model;
+namespace DataMiner\Model;
 
 use DataMiner\Storage\Model\FeatureVector as Base;
 use DataMiner\Storage\Model\FeatureVectorInterface;

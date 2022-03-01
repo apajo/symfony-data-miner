@@ -6,5 +6,5 @@ doctrine:
                 type: xml
                 dir: 'Resources/config/doctrine'
                 is_bundle: true
-                alias: 'DataMinerBundle'
-                prefix: 'DataMinerBundle\Model'
+                alias: 'DataMiner'
+                prefix: 'DataMiner\Model'

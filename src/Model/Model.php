@@ -1,6 +1,6 @@
 <?php
 
-namespace DataMinerBundle\Model;
+namespace DataMiner\Model;
 
 use ATV\BaseBundle\Entity\PInvoice;
 use DataMiner\Storage\Model\Discriminator\Discriminator;
