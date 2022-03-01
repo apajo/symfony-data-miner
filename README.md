@@ -7,7 +7,7 @@ Symfony Data Miner
 
 ### Prerequisites
 
-* Symfony >4.2
+* Symfony >=4.4
 
 ### Installation
 

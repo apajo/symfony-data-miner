@@ -1,1 +1,7 @@
 services:
+  data_miner.command:
+    class: DataMiner\Command\TrainCommand
+    arguments:
+      - '@core_base.backup'
+    tags:
+      - {name: console.command}
