@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+		xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+	<entity name="DataMinerBundle\Model\Model" table="miner__model"
+			repository-class="Core\BaseBundle\Miner\Repo\MinerRepository">
+		<id name="id" type="integer">
+			<generator strategy="AUTO"/>
+		</id>
+
+		<indexes>
+			<index columns="model,name" />
+		</indexes>
+
+		<field name="model" type="string" length="100" nullable="true" />
+		<field name="name" type="string" length="100" nullable="true" />
+
+		<one-to-many field="labels" target-entity="DataMinerBundle\Model\Label" mapped-by="model"
+					 orphan-removal="true">
+			<cascade>
+				<cascade-all></cascade-all>
+			</cascade>
+		</one-to-many>
+
+		<one-to-many field="entries" target-entity="DataMinerBundle\Model\Entry" mapped-by="model"
+					 orphan-removal="true">
+			<cascade>
+				<cascade-all></cascade-all>
+			</cascade>
+		</one-to-many>
+	</entity>
+</doctrine-mapping>

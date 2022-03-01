@@ -1,0 +1,23 @@
+{
+    "name": "apajo/symfony-data-miner",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle for php-data-miner",
+    "keywords": ["symfony", "ml", "data", "miner"],
+    "homepage": "https://github.com/apajo/symfony-data-miner",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andres Pajo",
+            "homepage": "http://apajo.ee/"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "apajo/php-data-miner": "^0.0.30"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": { "DataMiner\\": "src/" }
+    }
+}

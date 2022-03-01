@@ -1,0 +1,10 @@
+doctrine:
+    orm:
+        mappings:
+            BaseBundle:
+                mapping: true
+                type: xml
+                dir: 'Resources/config/doctrine'
+                is_bundle: true
+                alias: 'DataMinerBundle'
+                prefix: 'DataMinerBundle\Model'

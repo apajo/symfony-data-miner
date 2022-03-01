@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+		xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+	<entity name="DataMinerBundle\Model\Feature" table="miner__feature">
+		<id name="id" type="integer">
+			<generator strategy="AUTO"/>
+		</id>
+
+		<unique-constraints>
+			<unique-constraint columns="property_id,name" name="unique_property_feature" />
+		</unique-constraints>
+
+		<indexes>
+			<index columns="name,property_id" />
+		</indexes>
+
+		<many-to-one field="property" target-entity="DataMinerBundle\Model\Property" inversed-by="features">
+		</many-to-one>
+
+		<field name="name" type="string" length="20" nullable="true" />
+		<field name="value" type="string" length="50" nullable="true" />
+	</entity>
+</doctrine-mapping>
