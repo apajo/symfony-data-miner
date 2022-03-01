@@ -15,7 +15,7 @@ services:
       - ["setProvider", ["@data_miner.property.provider"]]
 
   data_miner.property.provider:
-    class: DataMiner\Model\Property\Provider
+    class: PhpDataMiner\Model\Property\Provider
     arguments:
       - "@data_miner.property.registry"
 
