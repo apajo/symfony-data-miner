@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDataMiner\Miner;
+namespace DataMiner\Miner;
 
 use PhpDataMiner\Miner as Base;
 use PhpDataMiner\Model\Property\Provider;

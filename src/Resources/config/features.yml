@@ -1,4 +1,4 @@
 services:
   data_miner.feature.word_tree:
-    class: PhpDataMiner\Model\Property\Feature\WordTreeFeature
+    class: DataMiner\Model\Property\Feature\WordTreeFeature
     parent: data_miner.feature.abstract

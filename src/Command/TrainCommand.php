@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpDataMiner\Command;
+namespace DataMiner\Command;
 
-use PhpDataMiner\Miner\Miner;
+use DataMiner\Miner\Miner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

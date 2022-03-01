@@ -2,7 +2,7 @@
 
 namespace DataMiner;
 
-use PhpDataMiner\DependencyInjection\MinerExtension;
+use DataMiner\DependencyInjection\MinerExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class DataMinerBundle extends Bundle

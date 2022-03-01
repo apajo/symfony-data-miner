@@ -1,24 +1,24 @@
 services:
   data_miner.property.base:
-    class: PhpDataMiner\Model\Property\Property
+    class: DataMiner\Model\Property\Property
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }
 
   data_miner.property.float:
-    class: PhpDataMiner\Model\Property\FloatProperty
+    class: DataMiner\Model\Property\FloatProperty
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }
 
   data_miner.property.int:
-    class: PhpDataMiner\Model\Property\IntegerProperty
+    class: DataMiner\Model\Property\IntegerProperty
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }
 
   data_miner.property.date:
-    class: PhpDataMiner\Model\Property\DateProperty
+    class: DataMiner\Model\Property\DateProperty
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }

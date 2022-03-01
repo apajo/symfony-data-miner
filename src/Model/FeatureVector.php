@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDataMiner\Model;
+namespace DataMiner\Model;
 
 use PhpDataMiner\Storage\Model\FeatureVector as Base;
 

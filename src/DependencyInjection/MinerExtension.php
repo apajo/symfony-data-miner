@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDataMiner\DependencyInjection;
+namespace DataMiner\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

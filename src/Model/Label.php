@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDataMiner\Model;
+namespace DataMiner\Model;
 
 use PhpDataMiner\Storage\Model\Label as Base;
 use PhpDataMiner\Storage\Model\LabelInterface;
