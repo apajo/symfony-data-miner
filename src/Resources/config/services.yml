@@ -1,7 +1,31 @@
+imports:
+  - { resource: "properties.yml" }
+  - { resource: "features.yml" }
+
 services:
   data_miner.command:
     class: DataMiner\Command\TrainCommand
-    arguments:
-      - '@core_base.backup'
+    autowire: true
     tags:
       - {name: console.command}
+
+  data_miner.miner:
+    class: DataMiner\Miner\Miner
+    calls:
+      - ["setProvider", ["@data_miner.property.provider"]]
+
+  data_miner.property.provider:
+    class: PhpDataMiner\Model\Property\Provider
+    arguments:
+      - "@data_miner.property.registry"
+
+  data_miner.property.registry:
+    class: DataMiner\Registry\Registry
+
+  data_miner.property.abstract:
+    abstract: true
+    calls:
+      - ["addFeature", ["@data_miner.feature.word_tree"]]
+
+  data_miner.feature.abstract:
+    abstract: true

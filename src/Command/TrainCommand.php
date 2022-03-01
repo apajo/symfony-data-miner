@@ -2,6 +2,7 @@
 
 namespace DataMiner\Command;
 
+use DataMiner\Miner\Miner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class TrainCommand extends Command
 {
+    /**
+     * @var Miner
+     */
+    protected $miner;
+
+    /**
+     * @required
+     * @param Miner $miner
+     */
+    public function setMiner (Miner $miner)
+    {
+        $this->miner = $miner;
+    }
     /**
      * {@inheritdoc}
      */

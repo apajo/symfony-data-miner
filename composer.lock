@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ad6851af9098409fb3b3ad0ba473e41",
+    "content-hash": "f5dfcfd59538513174eef158e970f3bd",
     "packages": [
         {
             "name": "amphp/amp",
@@ -557,16 +557,16 @@
         },
         {
             "name": "apajo/php-data-miner",
-            "version": "0.0.30",
+            "version": "0.0.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apajo/php-data-miner.git",
-                "reference": "460ea91f14708915b2d3548ff02031476dd59c6d"
+                "reference": "2cd7ec11883553ba767cf98325d0566edc85bdb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/460ea91f14708915b2d3548ff02031476dd59c6d",
-                "reference": "460ea91f14708915b2d3548ff02031476dd59c6d",
+                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/2cd7ec11883553ba767cf98325d0566edc85bdb4",
+                "reference": "2cd7ec11883553ba767cf98325d0566edc85bdb4",
                 "shasum": ""
             },
             "require": {
@@ -597,13 +597,13 @@
                     "var/dump.php"
                 ],
                 "psr-4": {
-                    "DataMiner\\": "src/"
+                    "PhpDataMiner\\": "src/"
                 },
                 "classmap": []
             },
             "autoload-dev": {
                 "psr-4": {
-                    "DataMinerTests\\": "tests/"
+                    "PhpDataMinerTests\\": "tests/"
                 }
             },
             "scripts": {
@@ -620,10 +620,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/apajo/php-data-miner/tree/0.0.30",
+                "source": "https://github.com/apajo/php-data-miner/tree/0.0.32",
                 "issues": "https://github.com/apajo/php-data-miner/issues"
             },
-            "time": "2022-03-01T00:43:31+00:00"
+            "time": "2022-03-01T01:29:03+00:00"
         },
         {
             "name": "doctrine/annotations",

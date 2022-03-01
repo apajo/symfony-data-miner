@@ -4,7 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="DataMiner\Model\Model" table="miner__model"
+	<entity name="DataMiner\Model\Model" table="data_miner__model"
 			repository-class="DataMiner\Repository\MinerRepository">
 
 		<id name="id" type="integer">
