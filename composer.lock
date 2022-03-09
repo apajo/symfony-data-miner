@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b6d46db213240ec2d160afe8783f913",
+    "content-hash": "4847c5a7452a9d9feca4143066fa41be",
     "packages": [
         {
             "name": "amphp/amp",
@@ -557,16 +557,16 @@
         },
         {
             "name": "apajo/php-data-miner",
-            "version": "0.0.40",
+            "version": "0.0.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apajo/php-data-miner.git",
-                "reference": "ed872e265774e975228932595e73df45d5811d36"
+                "reference": "532e7e9c7f9f2af8487ae6363e88a5d12e1f1625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/ed872e265774e975228932595e73df45d5811d36",
-                "reference": "ed872e265774e975228932595e73df45d5811d36",
+                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/532e7e9c7f9f2af8487ae6363e88a5d12e1f1625",
+                "reference": "532e7e9c7f9f2af8487ae6363e88a5d12e1f1625",
                 "shasum": ""
             },
             "require": {
@@ -603,7 +603,7 @@
             },
             "autoload-dev": {
                 "psr-4": {
-                    "PhpDataMiner\\Tests\\": "tests/"
+                    "PhpDataMinerTests\\": "tests/"
                 }
             },
             "scripts": {
@@ -620,10 +620,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/apajo/php-data-miner/tree/0.0.40",
+                "source": "https://github.com/apajo/php-data-miner/tree/0.0.42",
                 "issues": "https://github.com/apajo/php-data-miner/issues"
             },
-            "time": "2022-03-01T04:22:22+00:00"
+            "time": "2022-03-08T22:31:39+00:00"
         },
         {
             "name": "doctrine/annotations",
