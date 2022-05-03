@@ -14,16 +14,12 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/apajo/php-data-miner"
-        },
-        {
-            "type": "composer",
-            "url": "https://git.apajo.ee/"
+            "url": "https://github.com/apajo/php-data-miner.git"
         }
     ],
     "require": {
         "php": "^7.4|^8.1",
-        "apajo/php-data-miner": "^0.1.0"
+        "apajo/php-data-miner": "^0.1"
     },
     "autoload": {
         "psr-4": {
