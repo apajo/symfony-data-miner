@@ -3,11 +3,13 @@
 namespace DataMiner\Repository;
 
 use DataMiner\Model\Entry;
+use DataMiner\Model\Label;
 use DataMiner\Model\Model;
+use DataMiner\Model\Property;
 use Doctrine\ORM\EntityRepository;
-use DataMiner\Storage\StorageInterface;
-use DataMiner\Storage\StorageTrait;
-use DataMiner\Storage\Model\ModelInterface;
+use PhpDataMiner\Storage\StorageInterface;
+use PhpDataMiner\Storage\StorageTrait;
+use PhpDataMiner\Storage\Model\ModelInterface;
 
 class MinerRepository extends EntityRepository implements StorageInterface
 {

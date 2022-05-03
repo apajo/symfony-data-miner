@@ -2,18 +2,40 @@
 
 namespace DataMiner\Miner;
 
-use PhpDataMiner\Miner as Base;
+use Core\BaseBundle\Traits\EntityManagerAwareTrait;
+use DataMiner\Model\Model;
+use PhpDataMiner\DataMiner;
 use PhpDataMiner\Model\Property\Provider;
+use PhpDataMiner\Storage\StorageInterface;
 
-class Miner extends Base
+class Miner
 {
+    use EntityManagerAwareTrait;
+
     /**
      * @var Provider
      */
     protected $provider;
 
-    public function setProvider (Provider $provider)
+    protected $filters = [];
+
+    protected $options = [];
+
+    function __construct (Provider $provider, array $filters, $options = [])
     {
         $this->provider = $provider;
+        $this->filters = $filters;
+        $this->options = $options;
+    }
+
+    public function create ($entity)
+    {
+        return DataMiner::create(
+            $entity,
+            $this->provider,
+            $this->em->getRepository(Model::class),
+            $this->filters,
+            $this->options
+        );
     }
 }

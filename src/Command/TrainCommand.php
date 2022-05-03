@@ -2,11 +2,10 @@
 
 namespace DataMiner\Command;
 
+use ATV\BaseBundle\Entity\PInvoice;
 use DataMiner\Miner\Miner;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class TrainCommand extends Command
@@ -32,9 +31,9 @@ class TrainCommand extends Command
         $this
             ->setName('miner:train')
             ->setDescription('Train your model')
-            ->addArgument('model', InputArgument::REQUIRED, 'Model name')
-            ->addOption('discriminator', 'd', InputOption::VALUE_OPTIONAL, 'Train only discriminated model entries')
-            ->addOption('override', 'o', InputOption::VALUE_OPTIONAL, 'Override already trained entries', false)
+//            ->addArgument('model', InputArgument::REQUIRED, 'Model name')
+//            ->addOption('discriminator', 'd', InputOption::VALUE_OPTIONAL, 'Train only discriminated model entries')
+//            ->addOption('override', 'o', InputOption::VALUE_OPTIONAL, 'Override already trained entries', false)
         ;
     }
 
@@ -43,6 +42,7 @@ class TrainCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
+        $entity = new PInvoice();
+        dump($this->miner->create($entity));
     }
 }

@@ -1,24 +1,39 @@
 services:
+  data_miner.property.abstract:
+    abstract: true
+    arguments:
+      - "@data_miner.kernel.default"
+    calls:
+      - [ "addFeature", [ "@data_miner.feature.word_tree" ] ]
+
   data_miner.property.base:
     class: DataMiner\Model\Property\Property
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }
 
+  ## NUMBERS
   data_miner.property.float:
     class: DataMiner\Model\Property\FloatProperty
     parent: data_miner.property.abstract
+    calls:
+      - [ "addFilter", [ "@data_miner.filter.number" ] ]
     tags:
       - { name: data_miner.property }
 
   data_miner.property.int:
     class: DataMiner\Model\Property\IntegerProperty
     parent: data_miner.property.abstract
+    calls:
+      - [ "addFilter", [ "@data_miner.filter.number" ] ]
     tags:
       - { name: data_miner.property }
 
+  ## DATES
   data_miner.property.date:
     class: DataMiner\Model\Property\DateProperty
     parent: data_miner.property.abstract
+    calls:
+      - [ "addFilter", [ "@data_miner.filter.date" ] ]
     tags:
       - { name: data_miner.property }

@@ -1,4 +1,7 @@
 services:
+  data_miner.feature.abstract:
+    abstract: true
+
   data_miner.feature.word_tree:
     class: DataMiner\Model\Property\Feature\WordTreeFeature
     parent: data_miner.feature.abstract

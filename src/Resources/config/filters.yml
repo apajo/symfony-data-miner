@@ -1,0 +1,39 @@
+services:
+  data_miner.filter.abstract:
+    class: PhpDataMiner\Normalizer\Tokenizer\AbstractTokenizer
+    abstract: true
+
+  data_miner.tokenizer.abstract:
+    parent: data_miner.filter.abstract
+    abstract: true
+
+  data_miner.transformer.abstract:
+    parent: data_miner.filter.abstract
+    abstract: true
+
+  ## Tokenizers
+  data_miner.filter.word_tree:
+    class: PhpDataMiner\Normalizer\Tokenizer\WordTree
+    parent: data_miner.tokenizer.abstract
+
+
+  ## Transformers
+  data_miner.filter.section:
+    class: PhpDataMiner\Normalizer\Transformer\Section
+    parent: data_miner.transformer.abstract
+
+  data_miner.filter.colon:
+    class: PhpDataMiner\Normalizer\Transformer\ColonFilter
+    parent: data_miner.transformer.abstract
+
+  data_miner.filter.number:
+    class: PhpDataMiner\Normalizer\Transformer\NumberFilter
+    parent: data_miner.transformer.abstract
+
+  data_miner.filter.date:
+    class: PhpDataMiner\Normalizer\Transformer\DateFilter
+    parent: data_miner.transformer.abstract
+
+  data_miner.filter.price:
+    class: PhpDataMiner\Normalizer\Transformer\PriceFilter
+    parent: data_miner.transformer.abstract

@@ -1,8 +1,8 @@
 <?php
 
-namespace DataMiner\Registry;
+namespace DataMiner\Property;
 
-use DataMiner\Model\Property\Registry as Base;
+use PhpDataMiner\Model\Property\Registry as Base;
 
 class Registry extends Base
 {

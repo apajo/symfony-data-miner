@@ -2,15 +2,14 @@
 
 namespace DataMiner\Model;
 
-use PhpDataMiner\Storage\Model\FeatureVector as Base;
-use PhpDataMiner\Storage\Model\FeatureVectorInterface;
+use PhpDataMiner\Storage\Model\Feature as Base;
 
 /**
  * Description of Feature
  *
  * @author Andres Pajo
  */
-class Feature extends Base implements FeatureVectorInterface
+class Feature extends Base
 {
 
 }
