@@ -4,9 +4,7 @@ namespace DataMiner\Miner;
 
 use Core\BaseBundle\Traits\EntityManagerAwareTrait;
 use DataMiner\Model\Model;
-use PhpDataMiner\DataMiner;
 use PhpDataMiner\Model\Property\Provider;
-use PhpDataMiner\Storage\StorageInterface;
 
 class Miner
 {
@@ -30,7 +28,7 @@ class Miner
 
     public function create ($entity)
     {
-        return DataMiner::create(
+        return \PhpDataMiner\Manager::create(
             $entity,
             $this->provider,
             $this->em->getRepository(Model::class),

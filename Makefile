@@ -15,3 +15,11 @@ help:           ## Show this help.
 
 tests:
 	php tests/$(arg).php
+
+release:
+	@[[ "$(shell git status -s)" ]] && echo -e ${RED}'Please commit your changes before continuing!'${NC} && exit 1 || :;
+	- git tag -d latest
+	git tag -a latest -m latest
+	git tag -a $(arg) -m $(arg)
+	git push -f origin latest
+	git push -f origin $(arg)

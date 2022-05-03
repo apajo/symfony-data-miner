@@ -15,15 +15,24 @@
         {
             "type": "vcs",
             "url": "https://github.com/apajo/php-data-miner"
+        },
+        {
+            "type": "composer",
+            "url": "https://git.apajo.ee/"
         }
     ],
     "require": {
-        "php": ">=7.4",
-        "apajo/php-data-miner": "^0.0.42"
+        "php": "^7.4|^8.1",
+        "apajo/php-data-miner": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
             "DataMiner\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpDataMiner\\": "../php-data-miner/src/"
         }
     }
 }

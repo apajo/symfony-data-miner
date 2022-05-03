@@ -1,6 +1,6 @@
 <?php
 
-namespace DataMiner\Repository;
+namespace DataMiner\Miner;
 
 use DataMiner\Model\Entry;
 use DataMiner\Model\Label;
@@ -8,11 +8,10 @@ use DataMiner\Model\Model;
 use DataMiner\Model\Property;
 use Doctrine\ORM\EntityRepository;
 use PhpDataMiner\Storage\Model\EntryInterface;
-use PhpDataMiner\Storage\StorageInterface;
 use PhpDataMiner\Storage\Model\ModelInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use PhpDataMiner\Storage\StorageInterface;
 
-class MinerRepository extends EntityRepository implements StorageInterface
+class Storageextends extends EntityRepository implements StorageInterface
 {
     protected $labelModel = Label::class;
     protected $entryModel = Entry::class;
