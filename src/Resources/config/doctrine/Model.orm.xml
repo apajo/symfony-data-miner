@@ -4,17 +4,17 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="DataMiner\Model\Model" table="data_miner__model">
+	<entity name="DataMiner\Model\Model" table="data_miner__model"
+			repository-class="DataMiner\Repository\MinerRepository">
 
 		<id name="id" type="integer">
 			<generator strategy="AUTO"/>
 		</id>
 
 		<indexes>
-			<index columns="model,name" />
+			<index columns="name" />
 		</indexes>
 
-		<field name="model" type="string" length="100" nullable="true" />
 		<field name="name" type="string" length="100" nullable="true" />
 
 		<one-to-many field="labels" target-entity="DataMiner\Model\Label" mapped-by="model"
@@ -25,6 +25,13 @@
 		</one-to-many>
 
 		<one-to-many field="entries" target-entity="DataMiner\Model\Entry" mapped-by="model"
+					 orphan-removal="true">
+			<cascade>
+				<cascade-all></cascade-all>
+			</cascade>
+		</one-to-many>
+
+		<one-to-many field="propertys" target-entity="DataMiner\Model\ModelProperty" mapped-by="model"
 					 orphan-removal="true">
 			<cascade>
 				<cascade-all></cascade-all>

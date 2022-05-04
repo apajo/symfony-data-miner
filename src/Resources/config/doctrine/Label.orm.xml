@@ -9,10 +9,9 @@
 			<generator strategy="AUTO"/>
 		</id>
 
-		<many-to-one field="model" target-entity="DataMiner\Model\Model" inversed-by="entries">
+		<many-to-one field="model" target-entity="DataMiner\Model\Model" inversed-by="labels">
 		</many-to-one>
 
-		<field name="property" type="text" length="50" nullable="true" />
 		<field name="value" type="text" length="50" nullable="true" />
 		<field name="text" type="text" length="50" nullable="true" />
 	</entity>

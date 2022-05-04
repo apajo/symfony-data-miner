@@ -2,20 +2,18 @@
 
 namespace DataMiner\Miner;
 
+use Core\BaseBundle\Entity\Repository\EntityRepository;
 use DataMiner\Model\Entry;
-use DataMiner\Model\Label;
 use DataMiner\Model\Model;
-use DataMiner\Model\Property;
-use Doctrine\ORM\EntityRepository;
 use PhpDataMiner\Storage\Model\EntryInterface;
 use PhpDataMiner\Storage\Model\ModelInterface;
 use PhpDataMiner\Storage\StorageInterface;
+use PhpDataMiner\Storage\StorageTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Storageextends extends EntityRepository implements StorageInterface
+class Storage extends EntityRepository implements StorageInterface
 {
-    protected $labelModel = Label::class;
-    protected $entryModel = Entry::class;
-    protected $propertyModel = Property::class;
+    use StorageTrait;
 
     public function load($entity, array $options = []): ModelInterface
     {

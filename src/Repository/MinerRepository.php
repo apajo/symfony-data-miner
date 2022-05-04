@@ -7,13 +7,14 @@ use DataMiner\Model\Label;
 use DataMiner\Model\Model;
 use DataMiner\Model\Property;
 use Doctrine\ORM\EntityRepository;
-use PhpDataMiner\Storage\Model\EntryInterface;
-use PhpDataMiner\Storage\StorageInterface;
 use PhpDataMiner\Storage\Model\ModelInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use PhpDataMiner\Storage\StorageInterface;
+use PhpDataMiner\Storage\StorageTrait;
 
 class MinerRepository extends EntityRepository implements StorageInterface
 {
+    use StorageTrait;
+
     protected $labelModel = Label::class;
     protected $entryModel = Entry::class;
     protected $propertyModel = Property::class;
@@ -21,7 +22,7 @@ class MinerRepository extends EntityRepository implements StorageInterface
     public function load($entity, array $options = []): ModelInterface
     {
         $this->buildOptions($options);
-
+dump($entity);
         $model = $this->getModel($entity);
 
         $discriminator = $model::createEntryDiscriminator($entity);
@@ -68,13 +69,13 @@ class MinerRepository extends EntityRepository implements StorageInterface
 
     public function getModel($entity, bool $create = true): ?ModelInterface
     {
-        $model = $this->findOneBy([
-            'model' => get_class($entity),
+        $model = $this->_em->getRepository(Model::class)->findOneBy([
+            'name' => get_class($entity),
         ]);
 
         if (!$model && $create) {
             $model = new Model();
-            $model->setModel(get_class($entity));
+            $model->setName(get_class($entity));
 
             $this->_em->persist($model);
         }
@@ -82,33 +83,4 @@ class MinerRepository extends EntityRepository implements StorageInterface
         return $model;
     }
 
-
-    public function filterEntries(ModelInterface $model, array $filter = null)
-    {
-        $model->filterEntries(function (EntryInterface $a) use ($filter) {
-            $regex = '/' . implode('\.', array_map(function ($a) {
-                    return '(' . ($a ?: '\d*') . ')';
-                }, $filter)) . '/';
-            $target = $a->getDiscriminator()->getString();
-
-            preg_match($regex, $target, $matches);
-
-            return (bool)$matches;
-        });
-    }
-
-    protected function buildOptions(array $options = [])
-    {
-        $resolver = new OptionsResolver();
-        $this->configureOptions($resolver);
-        $this->options = $resolver->resolve($options);
-    }
-
-    protected function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'discriminator' => null,
-            'property' => null,
-        ));
-    }
 }

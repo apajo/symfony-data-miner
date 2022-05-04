@@ -10,14 +10,17 @@
 		</id>
 
 		<unique-constraints>
-			<unique-constraint columns="entry_id,name" name="unique_entry_property" />
+			<unique-constraint columns="entry_id,model_property_id" name="unique_entry_property" />
 		</unique-constraints>
 
 		<indexes>
-			<index columns="entry_id,name" />
+			<index columns="entry_id" />
 		</indexes>
 
-		<many-to-one field="entry" target-entity="DataMiner\Model\Entry" >
+		<many-to-one field="model_property" target-entity="DataMiner\Model\ModelProperty">
+		</many-to-one>
+
+		<many-to-one field="entry" target-entity="DataMiner\Model\Entry" inversed-by="properties" >
 		</many-to-one>
 
 		<many-to-one field="label" target-entity="DataMiner\Model\Label">
@@ -32,7 +35,5 @@
 				<cascade-all></cascade-all>
 			</cascade>
 		</one-to-many>
-
-		<field name="name" type="string" length="50" nullable="true" />
 	</entity>
 </doctrine-mapping>

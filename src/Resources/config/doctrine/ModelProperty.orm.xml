@@ -4,26 +4,23 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="DataMiner\Model\Entry" table="data_miner__entry">
+	<entity name="DataMiner\Model\ModelProperty" table="data_miner__model_property">
 		<id name="id" type="integer">
 			<generator strategy="AUTO"/>
 		</id>
 
 		<unique-constraints>
-			<unique-constraint columns="model_id,discriminator,id" name="unique_model_discriminator" />
+			<unique-constraint columns="model_id,name" name="unique_entry_property" />
 		</unique-constraints>
 
 		<indexes>
-			<index columns="discriminator" />
+			<index columns="model_id" />
+			<index columns="name" />
 		</indexes>
 
-		<many-to-one field="model" target-entity="DataMiner\Model\Model" inversed-by="entries">
+		<many-to-one field="model" target-entity="DataMiner\Model\Model" inversed-by="propertys">
 		</many-to-one>
 
-		<field name="discriminator" type="string" length="100" nullable="true" />
-
-		<one-to-many field="properties" target-entity="DataMiner\Model\Property" mapped-by="entry"
-					 orphan-removal="true">
-		</one-to-many>
+		<field name="name" type="string" length="50" nullable="true" />
 	</entity>
 </doctrine-mapping>

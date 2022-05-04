@@ -23,6 +23,9 @@ services:
       - [ "@data_miner.filter.colon", "@data_miner.filter.section",  "@data_miner.filter.word_tree"]
       - []
 
+#  data_miner.storage:
+#    class: DataMiner\Miner\Storage
+
   data_miner.property.provider:
     class: PhpDataMiner\Model\Property\Provider
     arguments:
