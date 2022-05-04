@@ -7,6 +7,8 @@ services:
   data_miner.command:
     class: DataMiner\Command\TrainCommand
     autowire: true
+    calls:
+      - [ "setModal", [ ATV\BaseBundle\Entity\PInvoice ] ]
     tags:
       - {name: console.command}
 
@@ -22,9 +24,6 @@ services:
       - "@data_miner.property.provider"
       - [ "@data_miner.filter.colon", "@data_miner.filter.section",  "@data_miner.filter.word_tree"]
       - []
-
-#  data_miner.storage:
-#    class: DataMiner\Miner\Storage
 
   data_miner.property.provider:
     class: PhpDataMiner\Model\Property\Provider
