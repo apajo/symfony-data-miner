@@ -2,23 +2,25 @@
 
 namespace DataMiner\Command;
 
+use ATV\BaseBundle\Client\Entity\AbstractClient;
 use ATV\BaseBundle\Entity\PInvoice;
-use Core\BaseBundle\Traits\EntityManagerAwareTrait;
+use Core\BaseBundle\Media\MediaManagerTrait;
 use DataMiner\Miner\Miner;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Console\Helper\ProgressBar;
-use function _HumbugBox113887eee2b6\iter\rewindable\repeat;
 
 class TrainCommand extends Command
 {
+    use MediaManagerTrait;
+
     /** @var InputInterface */
     protected $input;
 
@@ -93,37 +95,81 @@ class TrainCommand extends Command
         $this->output = $output;
         $this->io = new SymfonyStyle($input, $output );
 
-        $clients = $this->getOption('client', true);
+        $clientIds = $this->getOption('client', true);
+        $invoiceIds = $this->getOption('invoice', true);
 
-        $repo = $this->getRepository();
+        $repo = $this->getRepository(AbstractClient::class);
         $qb = $this->createQueryBuilder($repo);
-        $qb->andWhere($qb->expr()->andX(...[
-            $qb->expr()->in('main.client', $clients)
-        ]));
-        dump($qb->getDQL());
-dump($qb->getQuery()->getResult());
 
+        $whereX = [];
 
+        if ($clientIds) {
+            $whereX[] = $qb->expr()->in('main.id', $clientIds);
+        }
 
+        if ($whereX) {
+            $qb->andWhere($qb->expr()->andX(...$whereX));
+        }
 
-        $this->process();
+        $clients = $qb->getQuery()->getResult();
+
+        /** @var AbstractClient $client */
+        foreach ($clients as $client) {
+            $repo = $this->getRepository($this->model);
+            $qb = $this->createQueryBuilder($repo);
+
+            $whereX = [
+                $qb->expr()->eq('main.carrier', $client->getId())
+            ];
+
+            $invoiceIds && $whereX[] = $qb->expr()->in('main.id', $invoiceIds);
+
+            $qb->andWhere($qb->expr()->andX(...$whereX));
+
+            $items = $qb->getQuery()->getResult();
+            $this->process($client, new ArrayCollection($items));
+        }
+
     }
 
-    protected function process (Collection $items)
+    protected function process (AbstractClient $client, Collection $items)
     {
-        $progressBar = new ProgressBar($this->output, 10000);
+        $this->io->title($client->getName());
+
+        $progressBar = new ProgressBar($this->output, $items->count());
         $progressBar->setRedrawFrequency(2);
 
         $progressBar->setFormat('debug');
         //$progressBar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%');
         $progressBar->start();
 
-        do {
+        /** @var PInvoice $item */
+        foreach ($items as $item) {
+            if ($item->getFiles()->isEmpty()) {
+                continue;
+            }
+
+            $miner = $this->miner->create($item);
+            $filePath = $this->mediaManager->getMediaPath($item->getFiles()->first());
+
+            if (!is_file($filePath)) {
+                continue;
+            }
+
+            $content = shell_exec('pdftotext -layout ' . $filePath . ' -');
+
+            if (!$content) {
+                continue;
+            }
+
+            $doc = $miner->normalize($content);
+            $entry = $miner->train($item, $doc);
+
             $progressBar->advance();
-        } while ($progressBar->getProgress() < $progressBar->getMaxSteps());
+        }
 
+        $this->em->flush();
         $progressBar->finish();
-
 
         ProgressBar::setFormatDefinition(
             'minimal',
@@ -145,9 +191,9 @@ dump($qb->getQuery()->getResult());
         return $this->input->getOption($name);
     }
 
-    protected function getRepository ()
+    protected function getRepository (string $model)
     {
-        return $this->em->getRepository($this->model);
+        return $this->em->getRepository($model);
     }
 
     protected function createQueryBuilder (EntityRepository $repository)

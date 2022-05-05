@@ -22,7 +22,7 @@ class MinerRepository extends EntityRepository implements StorageInterface
     public function load($entity, array $options = []): ModelInterface
     {
         $this->buildOptions($options);
-dump($entity);
+
         $model = $this->getModel($entity);
 
         $discriminator = $model::createEntryDiscriminator($entity);
