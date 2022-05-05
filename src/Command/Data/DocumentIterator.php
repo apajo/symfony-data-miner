@@ -33,12 +33,15 @@ class DocumentIterator extends \IteratorIterator
         /** @var PInvoice $item */
         $item = parent::current();
         $result = new DataItem();
+        $result->setDocument($item);
 
         if ($item->getFiles()->isEmpty()) {
             return null;
         }
 
+
         $filePath = $this->mediaManager->getMediaPath($item->getFiles()->first());
+        $filePath = '/var/www/apajo.ee/hosts/atv.apajo.ee/build/0.1.97.90/src/php-data-miner/tests/training/files' . substr($filePath, strrpos($filePath, '/'));
 
         if (is_file($filePath)) {
             $content = shell_exec('pdftotext -layout ' . $filePath . ' -');

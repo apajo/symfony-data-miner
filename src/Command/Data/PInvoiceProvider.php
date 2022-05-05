@@ -44,9 +44,12 @@ class PInvoiceProvider extends AbstractProvider
         foreach ($clients as $client) {
             $repo = $this->getRepository(PInvoice::class);
             $qb = $this->createQueryBuilder($repo);
+            $qb->leftJoin('main.files', 'files');
+            $qb->leftJoin('main.carrier', 'carrier');
 
             $whereX = [
-                $qb->expr()->eq('main.carrier', $client->getId())
+                $qb->expr()->in('carrier.id', $client->getId()),
+                $qb->expr()->isNotNull('files')
             ];
 
             $invoiceIds && $whereX[] = $qb->expr()->in('main.id', $invoiceIds);

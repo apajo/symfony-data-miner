@@ -124,28 +124,30 @@ class TrainCommand extends Command
         foreach ($items as $key => $item) {
             $progressBar->advance();
 
-            if (!$item || !$item->getContent()) {
+            if (!$item->getContent()) {
                 continue;
             }
 
             $content = $item->getContent();
+            $entity = $item->getDocument();
 
-            $miner = $this->miner->create($item);
+            $miner = $this->miner->create($entity);
 
             $doc = $miner->normalize($content);
-            $entry = $miner->train($item, $doc);
 
+            $entry = $miner->train($entity, $doc);
+dd($entry);
             $this->em->persist($entry);
         }
 
         $this->em->flush();
         $progressBar->finish();
         $this->io->newLine();
-
-        ProgressBar::setFormatDefinition(
-            'minimal',
-            '<info>%percent%</info>\033[32m%\033[0m <fg=white;bg=blue>%remaining%</>'
-        );
+//
+//        ProgressBar::setFormatDefinition(
+//            'minimal',
+//            '<info>%percent%</info>\033[32m%\033[0m <fg=white;bg=blue>%remaining%</>'
+//        );
 
     }
 
