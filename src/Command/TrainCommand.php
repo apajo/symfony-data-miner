@@ -3,12 +3,12 @@
 namespace DataMiner\Command;
 
 use ATV\BaseBundle\Client\Entity\AbstractClient;
-use ATV\BaseBundle\Entity\PInvoice;
 use Core\BaseBundle\Media\MediaManagerTrait;
+use Core\BaseBundle\Traits\EntityManagerAwareTrait;
+use DataMiner\Command\Data\DataItem;
+use DataMiner\Command\Data\DocumentIterator;
+use DataMiner\Command\Data\ProviderInterface;
 use DataMiner\Miner\Miner;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -19,6 +19,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class TrainCommand extends Command
 {
+    use EntityManagerAwareTrait;
     use MediaManagerTrait;
 
     /** @var InputInterface */
@@ -37,14 +38,6 @@ class TrainCommand extends Command
      */
     protected $miner;
 
-    /** @var EntityManagerInterface */
-    protected $em;
-
-    /**
-     * @var string
-     */
-    protected $model;
-
     /**
      * @required
      * @param Miner $miner
@@ -55,14 +48,16 @@ class TrainCommand extends Command
     }
 
     /**
-     * @required
-     * @param EntityManagerInterface $entityManager
-     * @return $this
+     * @var ProviderInterface|null
      */
-    public function setEntityManager(EntityManagerInterface $entityManager)
+    protected ?ProviderInterface $data = null;
+
+    /**
+     * @param ProviderInterface $data
+     */
+    public function setDataProvider (ProviderInterface $data)
     {
-        $this->em = $entityManager;
-        return $this;
+        $this->data = $data;
     }
 
     public function setModal(string $model)
@@ -98,42 +93,24 @@ class TrainCommand extends Command
         $clientIds = $this->getOption('client', true);
         $invoiceIds = $this->getOption('invoice', true);
 
-        $repo = $this->getRepository(AbstractClient::class);
-        $qb = $this->createQueryBuilder($repo);
+        $clients = $this->data->getIterator([
+            'invoices' => $invoiceIds,
+            'clients' => $clientIds,
+        ]);
 
-        $whereX = [];
-
-        if ($clientIds) {
-            $whereX[] = $qb->expr()->in('main.id', $clientIds);
-        }
-
-        if ($whereX) {
-            $qb->andWhere($qb->expr()->andX(...$whereX));
-        }
-
-        $clients = $qb->getQuery()->getResult();
-
-        /** @var AbstractClient $client */
-        foreach ($clients as $client) {
-            $repo = $this->getRepository($this->model);
-            $qb = $this->createQueryBuilder($repo);
-
-            $whereX = [
-                $qb->expr()->eq('main.carrier', $client->getId())
-            ];
-
-            $invoiceIds && $whereX[] = $qb->expr()->in('main.id', $invoiceIds);
-
-            $qb->andWhere($qb->expr()->andX(...$whereX));
-
-            $items = $qb->getQuery()->getResult();
-            $this->process($client, new ArrayCollection($items));
+        /**
+         * @var  $key
+         * @var DocumentIterator $documents
+         */
+        foreach ($clients as $key => $documents) {
+            $this->process($documents->getClient(), $documents);
         }
 
     }
 
-    protected function process (AbstractClient $client, Collection $items)
+    protected function process (AbstractClient $client, DocumentIterator $items)
     {
+        $this->io->newLine();
         $this->io->title($client->getName());
 
         $progressBar = new ProgressBar($this->output, $items->count());
@@ -143,33 +120,26 @@ class TrainCommand extends Command
         //$progressBar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%');
         $progressBar->start();
 
-        /** @var PInvoice $item */
-        foreach ($items as $item) {
-            if ($item->getFiles()->isEmpty()) {
+        /** @var DataItem $item */
+        foreach ($items as $key => $item) {
+            $progressBar->advance();
+
+            if (!$item || !$item->getContent()) {
                 continue;
             }
+
+            $content = $item->getContent();
 
             $miner = $this->miner->create($item);
-            $filePath = $this->mediaManager->getMediaPath($item->getFiles()->first());
-
-            if (!is_file($filePath)) {
-                continue;
-            }
-
-            $content = shell_exec('pdftotext -layout ' . $filePath . ' -');
-
-            if (!$content) {
-                continue;
-            }
 
             $doc = $miner->normalize($content);
             $entry = $miner->train($item, $doc);
 
-            $progressBar->advance();
         }
 
         $this->em->flush();
         $progressBar->finish();
+        $this->io->newLine();
 
         ProgressBar::setFormatDefinition(
             'minimal',

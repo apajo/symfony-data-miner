@@ -9,6 +9,7 @@ services:
     autowire: true
     calls:
       - [ "setModal", [ ATV\BaseBundle\Entity\PInvoice ] ]
+      - [ "setDataProvider", [ "@data_miner.provider.invoice" ] ]
     tags:
       - {name: console.command}
 
@@ -24,6 +25,11 @@ services:
       - "@data_miner.property.provider"
       - [ "@data_miner.filter.colon", "@data_miner.filter.section",  "@data_miner.filter.word_tree"]
       - []
+
+  DataMiner\Command\Data\PInvoiceProvider: "@data_miner.provider.invoice"
+  data_miner.provider.invoice:
+    class: DataMiner\Command\Data\PInvoiceProvider
+    autowire: true
 
   data_miner.property.provider:
     class: PhpDataMiner\Model\Property\Provider
