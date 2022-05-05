@@ -24,6 +24,9 @@
 
 		<one-to-many field="properties" target-entity="DataMiner\Model\Property" mapped-by="entry"
 					 orphan-removal="true">
+			<cascade>
+				<cascade-all></cascade-all>
+			</cascade>
 		</one-to-many>
 	</entity>
 </doctrine-mapping>

@@ -135,6 +135,7 @@ class TrainCommand extends Command
             $doc = $miner->normalize($content);
             $entry = $miner->train($item, $doc);
 
+            $this->em->persist($entry);
         }
 
         $this->em->flush();

@@ -25,7 +25,7 @@
 
 		<many-to-one field="label" target-entity="DataMiner\Model\Label">
 			<cascade>
-				<cascade-persist></cascade-persist>
+				<cascade-all></cascade-all>
 			</cascade>
 		</many-to-one>
 
