@@ -7,14 +7,14 @@ services:
       - [ "addFeature", [ "@data_miner.feature.word_tree" ] ]
 
   data_miner.property.base:
-    class: DataMiner\Model\Property\Property
+    class: PhpDataMiner\Model\Property\Property
     parent: data_miner.property.abstract
     tags:
       - { name: data_miner.property }
 
   ## NUMBERS
   data_miner.property.float:
-    class: DataMiner\Model\Property\FloatProperty
+    class: PhpDataMiner\Model\Property\FloatProperty
     parent: data_miner.property.abstract
     calls:
       - [ "addFilter", [ "@data_miner.filter.number" ] ]
@@ -22,7 +22,7 @@ services:
       - { name: data_miner.property }
 
   data_miner.property.int:
-    class: DataMiner\Model\Property\IntegerProperty
+    class: PhpDataMiner\Model\Property\IntegerProperty
     parent: data_miner.property.abstract
     calls:
       - [ "addFilter", [ "@data_miner.filter.number" ] ]
@@ -31,7 +31,7 @@ services:
 
   ## DATES
   data_miner.property.date:
-    class: DataMiner\Model\Property\DateProperty
+    class: PhpDataMiner\Model\Property\DateProperty
     parent: data_miner.property.abstract
     calls:
       - [ "addFilter", [ "@data_miner.filter.date" ] ]

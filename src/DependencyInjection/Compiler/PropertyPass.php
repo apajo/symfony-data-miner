@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\BaseBundle\DependencyInjection\Compiler;
+namespace DataMiner\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

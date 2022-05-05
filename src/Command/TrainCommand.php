@@ -136,7 +136,7 @@ class TrainCommand extends Command
             $doc = $miner->normalize($content);
 
             $entry = $miner->train($entity, $doc);
-dd($entry);
+
             $this->em->persist($entry);
         }
 
