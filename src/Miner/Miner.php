@@ -27,7 +27,7 @@ class Miner
     }
 
     public function create ($entity)
-    { dump($provider);
+    {
         return \PhpDataMiner\Manager::create(
             $entity,
             $this->provider,

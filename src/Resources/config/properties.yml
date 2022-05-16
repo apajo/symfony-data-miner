@@ -9,8 +9,6 @@ services:
   data_miner.property.base:
     class: PhpDataMiner\Model\Property\Property
     parent: data_miner.property.abstract
-    tags:
-      - { name: data_miner.property }
 
   ## NUMBERS
   data_miner.property.float:
@@ -35,5 +33,10 @@ services:
     parent: data_miner.property.abstract
     calls:
       - [ "addFilter", [ "@data_miner.filter.date" ] ]
+    tags:
+      - { name: data_miner.property }
+
+  data_miner.property.default:
+    parent: data_miner.property.base
     tags:
       - { name: data_miner.property }

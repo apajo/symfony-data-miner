@@ -24,10 +24,10 @@
 			</cascade>
 		</one-to-many>
 
-		<one-to-many field="entries" target-entity="DataMiner\Model\Entry" mapped-by="model"
-					 orphan-removal="true">
+		<one-to-many field="entries" target-entity="DataMiner\Model\Entry" mapped-by="model">
 			<cascade>
-				<cascade-all></cascade-all>
+				<cascade-persist></cascade-persist>
+				<cascade-refresh></cascade-refresh>
 			</cascade>
 		</one-to-many>
 

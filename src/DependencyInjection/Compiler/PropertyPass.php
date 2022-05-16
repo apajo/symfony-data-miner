@@ -16,7 +16,6 @@ class PropertyPass implements CompilerPassInterface
 
         foreach ($properties as $id => $attributes) {
             $registerService->addMethodCall('addType', [
-                $id,
                 new Reference($id),
             ]);
         }

@@ -18,14 +18,21 @@
 		</indexes>
 
 		<many-to-one field="model_property" target-entity="DataMiner\Model\ModelProperty">
+			<cascade>
+				<cascade-persist></cascade-persist>
+			</cascade>
 		</many-to-one>
 
 		<many-to-one field="entry" target-entity="DataMiner\Model\Entry" inversed-by="properties" >
-		</many-to-one>
-
-		<many-to-one field="label" target-entity="DataMiner\Model\Label">
+			<join-column name="entry_id" referenced-column-name="id"  on-delete="CASCADE" />
 			<cascade>
 				<cascade-all></cascade-all>
+			</cascade>
+		</many-to-one>
+
+		<many-to-one field="label" target-entity="DataMiner\Model\Label" >
+			<cascade>
+				<cascade-persist></cascade-persist>
 			</cascade>
 		</many-to-one>
 

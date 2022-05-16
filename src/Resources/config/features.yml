@@ -3,5 +3,5 @@ services:
     abstract: true
 
   data_miner.feature.word_tree:
-    class: DataMiner\Model\Property\Feature\WordTreeFeature
+    class: PhpDataMiner\Model\Property\Feature\WordTreeFeature
     parent: data_miner.feature.abstract

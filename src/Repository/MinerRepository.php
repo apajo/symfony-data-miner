@@ -25,8 +25,8 @@ class MinerRepository extends EntityRepository implements StorageInterface
 
         $model = $this->getModel($entity);
 
-        $discriminator = $model::createEntryDiscriminator($entity);
-        $model->getEntries($discriminator);
+//        $discriminator = $model::createEntryDiscriminator($entity);
+//        $model->getEntries($discriminator);
 
         return $model;
     }
@@ -41,7 +41,6 @@ class MinerRepository extends EntityRepository implements StorageInterface
         $item = $this->findOneBy([
             'model' => $entry->getModel(),
             'discriminator' => $entry->getDiscriminator(),
-            'name' => $entry->getId(),
         ]);
 
         if ($item) {

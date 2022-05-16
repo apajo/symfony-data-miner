@@ -40,8 +40,9 @@ class DocumentIterator extends \IteratorIterator
         }
 
 
-        $filePath = $this->mediaManager->getMediaPath($item->getFiles()->first());
-        $filePath = '/var/www/apajo.ee/hosts/atv.apajo.ee/build/0.1.97.90/src/php-data-miner/tests/training/files' . substr($filePath, strrpos($filePath, '/'));
+        $basePath = '/var/www/apajo.ee/hosts/atv.apajo.ee/uploads';
+        $filePath = realpath($this->mediaManager->getMediaPath($item->getFiles()->first()));
+        //$filePath = str_replace($basePath, '', $filePath);
 
         if (is_file($filePath)) {
             $content = shell_exec('pdftotext -layout ' . $filePath . ' -');

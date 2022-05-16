@@ -20,7 +20,8 @@
 
 		<many-to-one field="model" target-entity="DataMiner\Model\Model" inversed-by="propertys">
 		</many-to-one>
-
+		
 		<field name="name" type="string" length="50" nullable="true" />
+		<field name="kernel_state" type="text" nullable="true" />
 	</entity>
 </doctrine-mapping>

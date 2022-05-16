@@ -10,7 +10,7 @@
 		</id>
 
 		<unique-constraints>
-			<unique-constraint columns="model_id,discriminator,id" name="unique_model_discriminator" />
+			<unique-constraint columns="model_id,discriminator" name="unique_model_discriminator" />
 		</unique-constraints>
 
 		<indexes>

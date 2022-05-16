@@ -2,8 +2,8 @@
 
 namespace DataMiner\Model;
 
+use PhpDataMiner\Storage\Model\FeatureInterface;
 use PhpDataMiner\Storage\Model\LabelInterface;
-use PhpDataMiner\Storage\Model\ModelProperty;
 use PhpDataMiner\Storage\Model\Property as Base;
 use PhpDataMiner\Storage\Model\PropertyInterface;
 
@@ -14,25 +14,13 @@ use PhpDataMiner\Storage\Model\PropertyInterface;
  */
 class Property extends Base implements PropertyInterface
 {
-    /**
-     * @var ModelProperty|null
-     */
-    protected ?ModelProperty $model_property = null;
-
-
-    public function getModelProperty(): ?ModelProperty
-    {
-        return $this->model_property;
-    }
-
-    public function setModelProperty(?ModelProperty $model_property): void
-    {
-        $this->model_property = $model_property;
-    }
-
-
     public static function createLabel (): LabelInterface
     {
         return new Label();
+    }
+
+    public static function createFeature (): FeatureInterface
+    {
+        return new Feature();
     }
 }
