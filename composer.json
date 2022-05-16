@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": "^7.4|^8.1",
-        "apajo/php-data-miner": "^0.1.5"
+        "apajo/php-data-miner": "^0.2.12"
     },
     "autoload": {
         "psr-4": {
