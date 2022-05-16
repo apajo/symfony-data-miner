@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "767967b37f24518570adf8779ea978a1",
+    "content-hash": "8c55a6aed8e4633f061af0b17c303106",
     "packages": [
         {
             "name": "amphp/amp",
@@ -557,16 +557,16 @@
         },
         {
             "name": "apajo/php-data-miner",
-            "version": "0.1.2",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apajo/php-data-miner.git",
-                "reference": "401778224cf23c57e8b4198418da56102a896deb"
+                "reference": "cd4256523ae71b2c607d5c56a34ff70dc575505c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/401778224cf23c57e8b4198418da56102a896deb",
-                "reference": "401778224cf23c57e8b4198418da56102a896deb",
+                "url": "https://api.github.com/repos/apajo/php-data-miner/zipball/cd4256523ae71b2c607d5c56a34ff70dc575505c",
+                "reference": "cd4256523ae71b2c607d5c56a34ff70dc575505c",
                 "shasum": ""
             },
             "require": {
@@ -620,7 +620,7 @@
                 "source": "https://github.com/apajo/php-data-miner/tree/latest",
                 "issues": "https://github.com/apajo/php-data-miner/issues"
             },
-            "time": "2022-05-03T23:43:08+00:00"
+            "time": "2022-05-16T01:37:45+00:00"
         },
         {
             "name": "doctrine/annotations",
