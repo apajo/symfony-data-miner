@@ -113,6 +113,7 @@ class TrainCommand extends Command
         $this->io->newLine();
         $this->io->title($client->getName());
 
+        $override = (bool)$this->input->getOption('override');
         $progressBar = new ProgressBar($this->output, $items->count());
         $progressBar->setRedrawFrequency(2);
 
@@ -128,11 +129,17 @@ class TrainCommand extends Command
                 continue;
             }
 
-            $content = $item->getContent();
             $entity = $item->getDocument();
 
             $miner = $this->miner->create($entity);
+            $model = $miner->getModel();
+            $entry = $model->getEntry($model::createEntryDiscriminator($entity));
 
+            if ($entry && !$override) {
+                continue;
+            }
+
+            $content = $item->getContent();
             $doc = $miner->normalize($content);
 
             $entry = $miner->train($entity, $doc);
@@ -141,8 +148,9 @@ class TrainCommand extends Command
         }
 
         $this->em->flush();
-        $progressBar->finish();
         $this->io->newLine();
+        $progressBar->finish();
+
 //
 //        ProgressBar::setFormatDefinition(
 //            'minimal',
